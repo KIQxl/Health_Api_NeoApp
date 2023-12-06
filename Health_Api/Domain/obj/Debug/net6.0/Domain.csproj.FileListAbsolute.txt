@@ -1,0 +1,17 @@
+C:\Users\Caiaque\Desktop\projects\Health_Api_NeoApp\Health_Api\Domain\bin\Debug\net6.0\Domain.deps.json
+C:\Users\Caiaque\Desktop\projects\Health_Api_NeoApp\Health_Api\Domain\bin\Debug\net6.0\Domain.dll
+C:\Users\Caiaque\Desktop\projects\Health_Api_NeoApp\Health_Api\Domain\bin\Debug\net6.0\Domain.pdb
+C:\Users\Caiaque\Desktop\projects\Health_Api_NeoApp\Health_Api\Domain\bin\Debug\net6.0\Entities.dll
+C:\Users\Caiaque\Desktop\projects\Health_Api_NeoApp\Health_Api\Domain\bin\Debug\net6.0\Infrastructure.dll
+C:\Users\Caiaque\Desktop\projects\Health_Api_NeoApp\Health_Api\Domain\bin\Debug\net6.0\Infrastructure.pdb
+C:\Users\Caiaque\Desktop\projects\Health_Api_NeoApp\Health_Api\Domain\bin\Debug\net6.0\Entities.pdb
+C:\Users\Caiaque\Desktop\projects\Health_Api_NeoApp\Health_Api\Domain\obj\Debug\net6.0\Domain.csproj.AssemblyReference.cache
+C:\Users\Caiaque\Desktop\projects\Health_Api_NeoApp\Health_Api\Domain\obj\Debug\net6.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Caiaque\Desktop\projects\Health_Api_NeoApp\Health_Api\Domain\obj\Debug\net6.0\Domain.AssemblyInfoInputs.cache
+C:\Users\Caiaque\Desktop\projects\Health_Api_NeoApp\Health_Api\Domain\obj\Debug\net6.0\Domain.AssemblyInfo.cs
+C:\Users\Caiaque\Desktop\projects\Health_Api_NeoApp\Health_Api\Domain\obj\Debug\net6.0\Domain.csproj.CoreCompileInputs.cache
+C:\Users\Caiaque\Desktop\projects\Health_Api_NeoApp\Health_Api\Domain\obj\Debug\net6.0\Domain.csproj.CopyComplete
+C:\Users\Caiaque\Desktop\projects\Health_Api_NeoApp\Health_Api\Domain\obj\Debug\net6.0\Domain.dll
+C:\Users\Caiaque\Desktop\projects\Health_Api_NeoApp\Health_Api\Domain\obj\Debug\net6.0\refint\Domain.dll
+C:\Users\Caiaque\Desktop\projects\Health_Api_NeoApp\Health_Api\Domain\obj\Debug\net6.0\Domain.pdb
+C:\Users\Caiaque\Desktop\projects\Health_Api_NeoApp\Health_Api\Domain\obj\Debug\net6.0\ref\Domain.dll
