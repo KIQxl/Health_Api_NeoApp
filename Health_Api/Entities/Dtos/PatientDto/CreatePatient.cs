@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Dtos.PatientDto
 {
-    public class CreatePatient
+    public struct CreatePatient
     {
         public string Name { get; set; }
         public DateOnly DateOfBirth { get; set; }

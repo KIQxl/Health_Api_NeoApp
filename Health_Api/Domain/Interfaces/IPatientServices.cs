@@ -1,18 +1,15 @@
 ﻿using Entities.Dtos.PatientDto;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Entities.Models;
 
 namespace Domain.Interfaces
 {
     public interface IPatientServices
     {
-        public Task<PatientView> Add(CreatePatient request);
-        public Task<List<PatientView>> GetAll();
-        public Task<PatientView> Update(int id, UpdatePatient request);
-        public Task<bool> Delete(int id);
-        public Task<PatientView> GetViewById(int id);
+        public Task<Patient> GetPatientById(int id);
+        public Task<List<PatientView>> GetAllPatientsView();
+        public Task<PatientView> GetPatientViewById(int id);
+        public Task<PatientView> CreatePatient(CreatePatient request);
+        public Task<PatientView> UpdatePatient(int id, UpdatePatient request);
+        public Task<bool> DeletePatient(int id);
     }
 }

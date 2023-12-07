@@ -17,7 +17,7 @@ namespace Infrastructure.Configuration
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {   
-            optionsBuilder.UseMySql(GetConnectionString(), ServerVersion.AutoDetect(GetConnectionString()));
+            optionsBuilder.UseLazyLoadingProxies().UseMySql(GetConnectionString(), ServerVersion.AutoDetect(GetConnectionString()));
             base.OnConfiguring(optionsBuilder);
         }
 
@@ -30,7 +30,7 @@ namespace Infrastructure.Configuration
 
         public string GetConnectionString()
         {
-            return "server=localhost; database=HealthApi;user=root;password=03159875Ka@";
+            return "server=localhost; database=HealthApi;user=root;password=password";
         }
     }
 }

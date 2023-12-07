@@ -40,6 +40,9 @@ namespace Infrastructure.Data.Configuration
             builder.Property(p => p.Address)
                 .HasColumnType("varchar(200)")
                 .IsRequired();
+
+            builder.HasIndex(d => new {d.Email, d.CPF})
+                .IsUnique();
         }
     }
 }

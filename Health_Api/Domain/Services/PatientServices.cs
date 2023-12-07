@@ -17,28 +17,28 @@ namespace Domain.Services
             this._mapper = mapper;
         }
 
-        public async Task<List<PatientView>> GetAll()
-        {
-            List<Patient> patients = await _context.Patients.ToListAsync();
-
-            return _mapper.Map<List<PatientView>>(patients);
-        }
-
-        public async Task<Patient> GetById(int id)
+        public async Task<Patient> GetPatientById(int id)
         {
             Patient patient = await _context.Patients.FirstOrDefaultAsync(p => p.Id == id);
 
             return patient;
         }
 
-        public async Task<PatientView> GetViewById(int id)
+        public async Task<PatientView> GetPatientViewById(int id)
         {
-            Patient patient = await GetById(id);
+            Patient patient = await GetPatientById(id);
 
             return _mapper.Map<PatientView>(patient);
         }
 
-        public async Task<PatientView> Add(CreatePatient request)
+        public async Task<List<PatientView>> GetAllPatientsView()
+        {
+            List<Patient> patients = await _context.Patients.ToListAsync();
+
+            return _mapper.Map<List<PatientView>>(patients);
+        }
+
+        public async Task<PatientView> CreatePatient(CreatePatient request)
         {
             Patient patient = _mapper.Map<Patient>(request);
 
@@ -48,25 +48,30 @@ namespace Domain.Services
             return _mapper.Map<PatientView>(patient);
         }
 
-        public async Task<PatientView> Update(int id, UpdatePatient request)
+        public async Task<PatientView> UpdatePatient(int id, UpdatePatient request)
         {
-            Patient patient = await GetById(id);
+            Patient patient = await GetPatientById(id);
 
-            patient.Name = request.Name;
-            patient.DateOfBirth = request.DateOfBirth;
-            patient.CPF = request.CPF;
-            patient.Email = request.Email;
-            patient.Phone = request.Phone;
-            patient.Address = request.Address;
+            if(patient != null)
+            {
+                patient.Name = request.Name;
+                patient.DateOfBirth = request.DateOfBirth;
+                patient.CPF = request.CPF;
+                patient.Email = request.Email;
+                patient.Phone = request.Phone;
+                patient.Address = request.Address;
 
-            await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
 
-            return _mapper.Map<PatientView>(patient);
+                return _mapper.Map<PatientView>(patient);
+            }
+
+            throw new Exception("Paciente não encontrado");
         }
 
-        public async Task<bool> Delete(int id)
+        public async Task<bool> DeletePatient(int id)
         {
-            Patient patient = await GetById(id);
+            Patient patient = await GetPatientById(id);
 
             if (patient != null)
             {

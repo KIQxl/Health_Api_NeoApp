@@ -45,6 +45,9 @@ namespace Infrastructure.Data.Configuration
                 .HasColumnType("varchar(12)")
                 .IsFixedLength(true)
                 .IsRequired();
+
+            builder.HasIndex(d => new {d.Email, d.CPF, d.CRM})
+                .IsUnique();
         }
     }
 }

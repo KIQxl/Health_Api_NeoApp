@@ -1,9 +1,14 @@
 using Domain.Interfaces;
 using Domain.Services;
-using Entities.Dtos.PatientDto;
 using Entities.Models;
+using HealthWebApi.Interfaces;
+using HealthWebApi.Services;
 using Infrastructure.Configuration;
-using Microsoft.EntityFrameworkCore;
+using Infrastructure.Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,21 +17,46 @@ builder.Services.AddCors();
 builder.Services.AddControllers();
 
 builder.Services.AddDbContext<HealthApiContext>();
+builder.Services.AddDbContext<UserContext>();
+
+builder.Services.AddIdentity<User, IdentityRole>()
+    .AddEntityFrameworkStores<UserContext>()
+    .AddDefaultTokenProviders();
 
 builder.Services.AddScoped<IPatientServices, PatientServices>();
+builder.Services.AddScoped<IDoctorServices, DoctorServices>();
+builder.Services.AddScoped<IAppointmentServices, AppointmentServices>();
+builder.Services.AddScoped<IUserServices, UserServices>();
+builder.Services.AddScoped<ITokenServices, TokenService>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-//var config = new AutoMapper.MapperConfiguration(config =>
-//{
-//    config.CreateMap<CreatePatient, Patient>();
-//    config.CreateMap<Patient, PatientView>();
-//});
+var key = Encoding.UTF8.GetBytes("K48vjsn4Af8nmruicIw9c87ermQ38dmUe9");
+
+builder.Services.AddAuthentication(x =>
+{
+    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(x =>
+{
+    x.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(key),
+        ValidateIssuer = false,
+        ValidateAudience = false,
+    };
+});
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+
+}
 
 app.UseCors(c =>
 {
@@ -37,6 +67,7 @@ app.UseCors(c =>
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

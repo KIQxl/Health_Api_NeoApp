@@ -1,4 +1,5 @@
-﻿using Entities.Models;
+﻿using Entities.Dtos.AppointmentDto;
+using Entities.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Dtos.PatientDto
 {
-    public class PatientView
+    public struct PatientView
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -16,6 +17,6 @@ namespace Entities.Dtos.PatientDto
         public string Email { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
-        public virtual List<Appointment> Appointments { get; set; }
+        public List<AppointmentView> Appointments { get; set; }
     }
 }

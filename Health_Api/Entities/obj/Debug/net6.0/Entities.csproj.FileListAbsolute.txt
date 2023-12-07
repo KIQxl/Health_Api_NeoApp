@@ -1,7 +1,6 @@
 C:\Users\Caiaque\Desktop\projects\Health_Api_NeoApp\Health_Api\Entities\bin\Debug\net6.0\Entities.deps.json
 C:\Users\Caiaque\Desktop\projects\Health_Api_NeoApp\Health_Api\Entities\bin\Debug\net6.0\Entities.dll
 C:\Users\Caiaque\Desktop\projects\Health_Api_NeoApp\Health_Api\Entities\bin\Debug\net6.0\Entities.pdb
-C:\Users\Caiaque\Desktop\projects\Health_Api_NeoApp\Health_Api\Entities\obj\Debug\net6.0\Entities.csproj.AssemblyReference.cache
 C:\Users\Caiaque\Desktop\projects\Health_Api_NeoApp\Health_Api\Entities\obj\Debug\net6.0\Entities.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Caiaque\Desktop\projects\Health_Api_NeoApp\Health_Api\Entities\obj\Debug\net6.0\Entities.AssemblyInfoInputs.cache
 C:\Users\Caiaque\Desktop\projects\Health_Api_NeoApp\Health_Api\Entities\obj\Debug\net6.0\Entities.AssemblyInfo.cs
@@ -10,3 +9,4 @@ C:\Users\Caiaque\Desktop\projects\Health_Api_NeoApp\Health_Api\Entities\obj\Debu
 C:\Users\Caiaque\Desktop\projects\Health_Api_NeoApp\Health_Api\Entities\obj\Debug\net6.0\refint\Entities.dll
 C:\Users\Caiaque\Desktop\projects\Health_Api_NeoApp\Health_Api\Entities\obj\Debug\net6.0\Entities.pdb
 C:\Users\Caiaque\Desktop\projects\Health_Api_NeoApp\Health_Api\Entities\obj\Debug\net6.0\ref\Entities.dll
+C:\Users\Caiaque\Desktop\projects\Health_Api_NeoApp\Health_Api\Entities\obj\Debug\net6.0\Entities.csproj.AssemblyReference.cache

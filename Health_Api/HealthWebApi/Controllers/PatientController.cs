@@ -1,5 +1,6 @@
 ﻿using Domain.Interfaces;
 using Entities.Dtos.PatientDto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HealthWebApi.Controllers
@@ -16,11 +17,12 @@ namespace HealthWebApi.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin, Doctor")]
         public async Task<IActionResult> GetAll()
         {
             try
             {
-                List<PatientView> patients = await _patientServices.GetAll();
+                List<PatientView> patients = await _patientServices.GetAllPatientsView();
 
                 return Ok(patients);
             } catch (Exception ex)
@@ -31,11 +33,12 @@ namespace HealthWebApi.Controllers
 
         [HttpGet]
         [Route("GetViewById/{id}")]
+        [Authorize(Roles = "Admin, Doctor")]
         public async Task<IActionResult> GetViewById([FromRoute] int id)
         {
             try
             {
-                PatientView patient = await _patientServices.GetViewById(id);
+                PatientView patient = await _patientServices.GetPatientViewById(id);
 
                 return Ok(patient);
             }
@@ -47,13 +50,14 @@ namespace HealthWebApi.Controllers
 
         [HttpPost]
         [Route("CreatePatient")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreatePatient([FromBody] CreatePatient request)
         {
             try
             {
-                PatientView patientView = await _patientServices.Add(request);
+                PatientView patientView = await _patientServices.CreatePatient(request);
 
-                return Ok(patientView);
+                return Created($"Health/v1/Doctors/GetViewById/{patientView.Id}", patientView);
             } catch (Exception ex)
             {
                 return BadRequest(ex.Message);
@@ -62,13 +66,14 @@ namespace HealthWebApi.Controllers
 
         [HttpPut]
         [Route("UpdatePatient/{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdatePatient([FromRoute] int id, [FromBody] UpdatePatient request)
         {
             try
             {
-                PatientView patientView = await _patientServices.Update(id, request);
+                PatientView patientView = await _patientServices.UpdatePatient(id, request);
 
-                return Ok(patientView);
+                return Created($"Health/v1/Doctors/GetViewById/{patientView.Id}", patientView);
             }
             catch (Exception ex)
             {
@@ -78,11 +83,12 @@ namespace HealthWebApi.Controllers
 
         [HttpDelete]
         [Route("DeletePatient/{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeletePatient([FromRoute] int id)
         {
             try
             {
-                bool result = await _patientServices.Delete(id);
+                bool result = await _patientServices.DeletePatient(id);
 
                 return Ok(result);
             }

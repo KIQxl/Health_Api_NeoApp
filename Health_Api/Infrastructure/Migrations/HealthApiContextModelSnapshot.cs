@@ -81,6 +81,9 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Email", "CPF", "CRM")
+                        .IsUnique();
+
                     b.ToTable("Doctors");
                 });
 
@@ -116,6 +119,9 @@ namespace Infrastructure.Migrations
                         .IsFixedLength();
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Email", "CPF")
+                        .IsUnique();
 
                     b.ToTable("Patients");
                 });
