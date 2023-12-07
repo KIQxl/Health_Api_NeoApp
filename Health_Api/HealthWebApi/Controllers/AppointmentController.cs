@@ -18,6 +18,7 @@ namespace HealthWebApi.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Admin")]
+        [Route("GetAllViews")]
         public async Task<IActionResult> GetAllAppointmentsView()
         {
             try

@@ -6,5 +6,6 @@ namespace Entities.Dtos.AppointmentDto
     {
         public int DoctorId { get; set; }
         public DateTime AppointmentDate { get; set; }
+        public AppointmentStatus Status { get; set; }
     }
 }

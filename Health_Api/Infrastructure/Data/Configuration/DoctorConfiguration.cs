@@ -46,8 +46,13 @@ namespace Infrastructure.Data.Configuration
                 .IsFixedLength(true)
                 .IsRequired();
 
+            builder.Property(d => d.MedicalSpecialty)
+                .HasColumnType("varchar(100)")
+                .IsRequired();
+
             builder.HasIndex(d => new {d.Email, d.CPF, d.CRM})
                 .IsUnique();
+
         }
     }
 }

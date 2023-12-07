@@ -52,6 +52,7 @@ namespace Domain.Services
                     DoctorId = doctor.Id,
                     PatientId = patient.Id,
                     AppointmentDate = request.AppointmentDate,
+                    Status = AppointmentStatus.Scheduled
                 };
 
                 await _context.AddAsync(appointment);
@@ -71,6 +72,7 @@ namespace Domain.Services
             {
                 appointment.AppointmentDate = request.AppointmentDate;
                 appointment.DoctorId = request.DoctorId;
+                appointment.Status = request.Status;
 
                 await _context.SaveChangesAsync();
 

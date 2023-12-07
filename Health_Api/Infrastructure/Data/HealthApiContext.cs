@@ -15,12 +15,6 @@ namespace Infrastructure.Configuration
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {   
-            optionsBuilder.UseLazyLoadingProxies().UseMySql(GetConnectionString(), ServerVersion.AutoDetect(GetConnectionString()));
-            base.OnConfiguring(optionsBuilder);
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new PatientConfiguration());
@@ -28,9 +22,5 @@ namespace Infrastructure.Configuration
             modelBuilder.ApplyConfiguration(new AppointmentConfiguration());
         }
 
-        public string GetConnectionString()
-        {
-            return "server=localhost; database=HealthApi;user=root;password=password";
-        }
     }
 }

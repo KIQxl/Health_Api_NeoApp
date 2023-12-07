@@ -19,6 +19,7 @@ namespace HealthWebApi.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Admin, Patient")]
+        [Route("GetAllViews")]
         public async Task<IActionResult> GetAllDoctorsView()
         {
             try
@@ -94,6 +95,54 @@ namespace HealthWebApi.Controllers
                 return Ok(result);
             }
             catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut]
+        [Route("InactiveDoctor/{id}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> InactiveDoctor([FromRoute] int id)
+        {
+            try
+            {
+                DoctorView doctor = await _doctorServices.InactiveDoctor(id);
+
+                return Ok(doctor);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut]
+        [Route("ActiveDoctor/{id}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> ActiveDoctor([FromRoute] int id)
+        {
+            try
+            {
+                DoctorView doctor = await _doctorServices.ActiveDoctor(id);
+
+                return Ok(doctor);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("GetAvailabeDoctor")]
+        public async Task<IActionResult> GetAvailabeDoctor([FromBody] MedicalAvailabilityQueryBySpecialty request)
+        {
+            try
+            {
+                var doctor = await _doctorServices.GetAvailabeDoctor(request);
+                return Ok(doctor);
+            } catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }

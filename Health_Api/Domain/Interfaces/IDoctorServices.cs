@@ -17,5 +17,8 @@ namespace Domain.Interfaces
         public Task<DoctorView> CreateDoctor(CreateDoctor request);
         public Task<DoctorView> UpdateDoctor(int id, UpdateDoctor request);
         public Task<bool> DeleteDoctor(int id);
+        public Task<DoctorView> InactiveDoctor(int id);
+        public Task<DoctorView> ActiveDoctor(int id);
+        public Task<IEnumerable<DoctorViewByDapper>> GetAvailabeDoctor(MedicalAvailabilityQueryBySpecialty request);
     }
 }

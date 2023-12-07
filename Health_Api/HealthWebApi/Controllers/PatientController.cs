@@ -1,4 +1,6 @@
 ﻿using Domain.Interfaces;
+using Domain.Services;
+using Entities.Dtos.DoctorDto;
 using Entities.Dtos.PatientDto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,6 +19,7 @@ namespace HealthWebApi.Controllers
         }
 
         [HttpGet]
+        [Route("GetAllViews")]
         [Authorize(Roles = "Admin, Doctor")]
         public async Task<IActionResult> GetAll()
         {
@@ -91,6 +94,40 @@ namespace HealthWebApi.Controllers
                 bool result = await _patientServices.DeletePatient(id);
 
                 return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut]
+        [Route("ActivePatient/{id}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> ActivePatient([FromRoute] int id)
+        {
+            try
+            {
+                PatientView patient = await _patientServices.ActivePatient(id);
+
+                return Ok(patient);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut]
+        [Route("InactivePatient/{id}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> InactivePatient([FromRoute] int id)
+        {
+            try
+            {
+                PatientView patient = await _patientServices.InactivePatient(id);
+
+                return Ok(patient);
             }
             catch (Exception ex)
             {

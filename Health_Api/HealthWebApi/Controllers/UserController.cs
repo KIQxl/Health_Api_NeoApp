@@ -42,7 +42,6 @@ namespace HealthWebApi.Controllers
 
         [HttpPost]
         [Route("CreateUser")]
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateUser([FromBody] CreateUser request)
         {
             try

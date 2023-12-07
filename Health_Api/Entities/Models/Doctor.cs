@@ -10,6 +10,8 @@
         public string Phone { get; set; }
         public string Address { get; set; }
         public string CRM { get; set; }
+        public string MedicalSpecialty { get; set; }
+        public PersonStatus DoctorStatus { get; set; }
         public virtual List<Appointment> Appointments { get; set; }
     }
 }

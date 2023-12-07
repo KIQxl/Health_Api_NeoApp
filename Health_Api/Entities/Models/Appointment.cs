@@ -14,5 +14,6 @@ namespace Entities.Models
         public int DoctorId { get; set; }
         public virtual Doctor Doctor { get; set; }
         public DateTime AppointmentDate { get; set; }
+        public AppointmentStatus Status { get; set; }
     }
 }

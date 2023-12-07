@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations.User
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20231206214526_init")]
-    partial class init
+    [Migration("20231207162541_InitialMigrationUserContext")]
+    partial class InitialMigrationUserContext
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

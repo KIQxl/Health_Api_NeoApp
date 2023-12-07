@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entities.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,5 +16,7 @@ namespace Entities.Dtos.DoctorDto
         public string Phone { get; set; }
         public string Address { get; set; }
         public string CRM { get; set; }
+        public string MedicalSpecialty { get; set; }
+        public PersonStatus DoctorStatus { get; set; }
     }
 }

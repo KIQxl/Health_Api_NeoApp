@@ -10,16 +10,5 @@ namespace Infrastructure.Data
         {
             
         }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseMySql(GetConnectionString(), ServerVersion.AutoDetect(GetConnectionString()));
-            base.OnConfiguring(optionsBuilder);
-        }
-
-        public static string GetConnectionString()
-        {
-            return "server=localhost; database=HealthApi;user=root;password=password";
-        }
     }
 }

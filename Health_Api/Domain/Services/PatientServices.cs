@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Domain.Interfaces;
+using Entities.Dtos.DoctorDto;
 using Entities.Dtos.PatientDto;
 using Entities.Models;
 using Infrastructure.Configuration;
@@ -41,6 +42,7 @@ namespace Domain.Services
         public async Task<PatientView> CreatePatient(CreatePatient request)
         {
             Patient patient = _mapper.Map<Patient>(request);
+            patient.PatientStatus = PersonStatus.Active;
 
             await _context.Patients.AddAsync(patient);
             await _context.SaveChangesAsync();
@@ -81,6 +83,27 @@ namespace Domain.Services
             }
 
             return false;
+        }
+
+        public async Task<PatientView> InactivePatient(int id)
+        {
+            Patient patient = await GetPatientById(id);
+
+            patient.PatientStatus = PersonStatus.Inactive;
+
+            await _context.SaveChangesAsync();
+            return _mapper.Map<PatientView>(patient);
+        }
+
+
+        public async Task<PatientView> ActivePatient(int id)
+        {
+            Patient patient = await GetPatientById(id);
+
+            patient.PatientStatus = PersonStatus.Active;
+
+            await _context.SaveChangesAsync();
+            return _mapper.Map<PatientView>(patient);
         }
     }
 }

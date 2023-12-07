@@ -1,4 +1,6 @@
-﻿namespace Entities.Dtos.AppointmentDto
+﻿using Entities.Models;
+
+namespace Entities.Dtos.AppointmentDto
 {
     public struct CreateAppointment
     {
