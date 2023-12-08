@@ -18,9 +18,18 @@ namespace HealthWebApi.Controllers
             this._userServices = userServices;
         }
 
+
+        /// <summary>
+        /// Realizar login
+        /// </summary>
+        /// <returns>Token de autenticação e View do Usuário</returns>
+        /// <response code="200">Sucesso</response>
+        /// <response code="400">Falha na requisição</response>
         [HttpPost]
         [Route("Login")]
         [AllowAnonymous]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
             try
@@ -40,8 +49,16 @@ namespace HealthWebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Criar um novo registro na tabela de usuários
+        /// </summary>
+        /// <returns>Resultado da operação (True ou False)</returns>
+        /// <response code="200">Sucesso</response>
+        /// <response code="400">Falha na requisição</response>
         [HttpPost]
         [Route("CreateUser")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateUser([FromBody] CreateUser request)
         {
             try

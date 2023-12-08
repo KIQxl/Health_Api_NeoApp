@@ -78,3 +78,5 @@ C:\Users\Caiaque\Desktop\projects\Health_Api_NeoApp\Health_Api\HealthWebApi\bin\
 C:\Users\Caiaque\Desktop\projects\Health_Api_NeoApp\Health_Api\HealthWebApi\bin\Debug\net6.0\System.Security.Permissions.dll
 C:\Users\Caiaque\Desktop\projects\Health_Api_NeoApp\Health_Api\HealthWebApi\bin\Debug\net6.0\Dapper.dll
 C:\Users\Caiaque\Desktop\projects\Health_Api_NeoApp\Health_Api\HealthWebApi\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Caiaque\Desktop\projects\Health_Api_NeoApp\Health_Api\HealthWebApi\bin\Debug\net6.0\HealthWebApi.xml
+C:\Users\Caiaque\Desktop\projects\Health_Api_NeoApp\Health_Api\HealthWebApi\obj\Debug\net6.0\HealthWebApi.xml

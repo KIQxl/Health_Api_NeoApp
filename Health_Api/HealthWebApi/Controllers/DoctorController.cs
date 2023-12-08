@@ -17,9 +17,20 @@ namespace HealthWebApi.Controllers
             this._doctorServices = doctorServices;
         }
 
+
+        /// <summary>
+        /// Obter todas as views Dto de médicos da base de dados
+        /// </summary>
+        /// <returns>Lista de views Dto de médicos</returns>
+        /// <response code="200">Sucesso</response>
+        /// <response code="400">Médico não encontrado</response>
+        /// <response code="401">Não Autorizado</response>
         [HttpGet]
         [Authorize(Roles = "Admin, Patient")]
         [Route("GetAllViews")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetAllDoctorsView()
         {
             try
@@ -33,9 +44,20 @@ namespace HealthWebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Obter a view Dto de um médico específico da base de dados
+        /// </summary>
+        /// <param name="id">Identificador do paciente</param>
+        /// <returns>View Dto do médico</returns>
+        /// <response code="200">Sucesso</response>
+        /// <response code="400">Médico não encontrado</response>
+        /// <response code="401">Não Autorizado</response>
         [HttpGet]
         [Route("GetViewById/{id}")]
         [Authorize(Roles = "Admin, Patient")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetViewById([FromRoute] int id)
         {
             try
@@ -49,9 +71,20 @@ namespace HealthWebApi.Controllers
             }
         }
 
+
+        /// <summary>
+        /// Criar um novo registro na tabela de médicos
+        /// </summary>
+        /// <returns>View Dto do médico</returns>
+        /// <response code="201">Sucesso</response>
+        /// <response code="400">Falha na requisição</response>
+        /// <response code="401">Não Autorizado</response>
         [HttpPost]
         [Route("CreateDoctor")]
         [Authorize(Roles = "Admin")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> CreateDoctor([FromBody] CreateDoctor request)
         {
             try
@@ -66,9 +99,21 @@ namespace HealthWebApi.Controllers
             }
         }
 
+
+        /// <summary>
+        /// Alterar um registro na tabela de médicos
+        /// </summary>
+        /// <param name="id">Identificador do médico</param>
+        /// <returns>View Dto do médico</returns>
+        /// <response code="201">Sucesso</response>
+        /// <response code="400">Falha na requisição</response>
+        /// <response code="401">Não Autorizado</response>
         [HttpPut]
         [Route("UpdateDoctor/{id}")]
         [Authorize(Roles = "Admin")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> UpdateDoctor([FromRoute] int id, [FromBody] UpdateDoctor request)
         {
             try
@@ -83,9 +128,21 @@ namespace HealthWebApi.Controllers
             }
         }
 
+
+        /// <summary>
+        /// Excluir um registro na tabela de médicos
+        /// </summary>
+        /// <param name="id">Identificador do médico</param>
+        /// <returns>True para sucesso na exclusão, False para falha na exclusão</returns>
+        /// <response code="200">Sucesso</response>
+        /// <response code="400">Falha na requisição</response>
+        /// <response code="401">Não Autorizado</response>
         [HttpDelete]
         [Route("DeleteDoctor/{id}")]
         [Authorize(Roles = "Admin")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> DeleteDoctor([FromRoute] int id)
         {
             try
@@ -100,26 +157,21 @@ namespace HealthWebApi.Controllers
             }
         }
 
-        [HttpPut]
-        [Route("InactiveDoctor/{id}")]
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> InactiveDoctor([FromRoute] int id)
-        {
-            try
-            {
-                DoctorView doctor = await _doctorServices.InactiveDoctor(id);
 
-                return Ok(doctor);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
+        /// <summary>
+        /// Alterar o Status do médico para Ativo (Active)
+        /// </summary>
+        /// <param name="id">Identificador do médico</param>
+        /// <returns>View Dto do médico</returns>
+        /// <response code="200">Sucesso</response>
+        /// <response code="400">Falha na requisição</response>
+        /// <response code="401">Não Autorizado</response>
         [HttpPut]
         [Route("ActiveDoctor/{id}")]
         [Authorize(Roles = "Admin")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> ActiveDoctor([FromRoute] int id)
         {
             try
@@ -134,8 +186,49 @@ namespace HealthWebApi.Controllers
             }
         }
 
+
+        /// <summary>
+        /// Alterar o Status do médico para Inativo (Inactive)
+        /// </summary>
+        /// <param name="id">Identificador do médico</param>
+        /// <returns>View Dto do médico</returns>
+        /// <response code="200">Sucesso</response>
+        /// <response code="400">Falha na requisição</response>
+        /// <response code="401">Não Autorizado</response>
+        [HttpPut]
+        [Route("InactiveDoctor/{id}")]
+        [Authorize(Roles = "Admin")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public async Task<IActionResult> InactiveDoctor([FromRoute] int id)
+        {
+            try
+            {
+                DoctorView doctor = await _doctorServices.InactiveDoctor(id);
+
+                return Ok(doctor);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+        /// <summary>
+        /// Buscar médicos por especialidade disponíveis em um horário específico
+        /// </summary>
+        /// <param name="id">Identificador do médico</param>
+        /// <returns>View Dto do médico</returns>
+        /// <response code="200">Sucesso</response>
+        /// <response code="400">Falha na requisição</response>
+        /// <response code="401">Não Autorizado</response>
         [HttpGet]
         [Route("GetAvailabeDoctor")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetAvailabeDoctor([FromBody] MedicalAvailabilityQueryBySpecialty request)
         {
             try

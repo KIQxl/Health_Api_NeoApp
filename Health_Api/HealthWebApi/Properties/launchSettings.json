@@ -12,7 +12,7 @@
     "HealthWebApi": {
       "commandName": "Project",
       "dotnetRunMessages": true,
-      "launchBrowser": false,
+      "launchBrowser": true,
       "launchUrl": "swagger",
       "applicationUrl": "https://localhost:7018;http://localhost:5266",
       "environmentVariables": {

@@ -1,0 +1,218 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HealthWebApi</name>
+    </assembly>
+    <members>
+        <member name="M:HealthWebApi.Controllers.AppointmentController.GetAllAppointmentsView">
+            <summary>
+            Obter todas as views Dto de consultas médicas da base de dados
+            </summary>
+            <returns>Lista de views Dto de consultas médicas</returns>
+            <response code="200">Sucesso</response>
+            <response code="400">Médico não encontrado</response>
+            <response code="401">Não Autorizado</response>
+        </member>
+        <member name="M:HealthWebApi.Controllers.AppointmentController.GetAllAppointmentsView(System.Int32)">
+            <summary>
+            Obter a view Dto de uma consulta médica específica da base de dados
+            </summary>
+            <param name="id">Identificador da consulta médica</param>
+            <returns>View Dto da consulta médica</returns>
+            <response code="200">Sucesso</response>
+            <response code="400">Médico não encontrado</response>
+            <response code="401">Não Autorizado</response>
+        </member>
+        <member name="M:HealthWebApi.Controllers.AppointmentController.CreateAppointment(Entities.Dtos.AppointmentDto.CreateAppointment)">
+            <summary>
+            Criar um novo registro na tabela de consultas médicas
+            </summary>
+            <remarks>Objeto JSON</remarks>
+            <returns>View Dto da consulta médica</returns>
+            <response code="201">Sucesso</response>
+            <response code="400">Falha na requisição</response>
+            <response code="401">Não Autorizado</response>
+        </member>
+        <member name="M:HealthWebApi.Controllers.AppointmentController.UpdateAppointment(System.Int32,Entities.Dtos.AppointmentDto.UpdateAppointment)">
+            <summary>
+            Alterar um registro na tabela de consultas médicas
+            </summary>
+            <param name="id">Identificador da consulta médica</param>
+            <returns>View Dto da consulta médica</returns>
+            <response code="201">Sucesso</response>
+            <response code="400">Falha na requisição</response>
+            <response code="401">Não Autorizado</response>
+        </member>
+        <member name="M:HealthWebApi.Controllers.AppointmentController.DeleteAppointment(System.Int32)">
+            <summary>
+            Excluir um registro na tabela de consultas médicas
+            </summary>
+            <param name="id">Identificador da consulta médica</param>
+            <returns>True para sucesso na exclusão, False para falha na exclusão</returns>
+            <response code="200">Sucesso</response>
+            <response code="400">Falha na requisição</response>
+            <response code="401">Não Autorizado</response>
+        </member>
+        <member name="M:HealthWebApi.Controllers.DoctorController.GetAllDoctorsView">
+            <summary>
+            Obter todas as views Dto de médicos da base de dados
+            </summary>
+            <returns>Lista de views Dto de médicos</returns>
+            <response code="200">Sucesso</response>
+            <response code="400">Médico não encontrado</response>
+            <response code="401">Não Autorizado</response>
+        </member>
+        <member name="M:HealthWebApi.Controllers.DoctorController.GetViewById(System.Int32)">
+            <summary>
+            Obter a view Dto de um médico específico da base de dados
+            </summary>
+            <param name="id">Identificador do paciente</param>
+            <returns>View Dto do médico</returns>
+            <response code="200">Sucesso</response>
+            <response code="400">Médico não encontrado</response>
+            <response code="401">Não Autorizado</response>
+        </member>
+        <member name="M:HealthWebApi.Controllers.DoctorController.CreateDoctor(Entities.Dtos.DoctorDto.CreateDoctor)">
+            <summary>
+            Criar um novo registro na tabela de médicos
+            </summary>
+            <returns>View Dto do médico</returns>
+            <response code="201">Sucesso</response>
+            <response code="400">Falha na requisição</response>
+            <response code="401">Não Autorizado</response>
+        </member>
+        <member name="M:HealthWebApi.Controllers.DoctorController.UpdateDoctor(System.Int32,Entities.Dtos.DoctorDto.UpdateDoctor)">
+            <summary>
+            Alterar um registro na tabela de médicos
+            </summary>
+            <param name="id">Identificador do médico</param>
+            <returns>View Dto do médico</returns>
+            <response code="201">Sucesso</response>
+            <response code="400">Falha na requisição</response>
+            <response code="401">Não Autorizado</response>
+        </member>
+        <member name="M:HealthWebApi.Controllers.DoctorController.DeleteDoctor(System.Int32)">
+            <summary>
+            Excluir um registro na tabela de médicos
+            </summary>
+            <param name="id">Identificador do médico</param>
+            <returns>True para sucesso na exclusão, False para falha na exclusão</returns>
+            <response code="200">Sucesso</response>
+            <response code="400">Falha na requisição</response>
+            <response code="401">Não Autorizado</response>
+        </member>
+        <member name="M:HealthWebApi.Controllers.DoctorController.ActiveDoctor(System.Int32)">
+            <summary>
+            Alterar o Status do médico para Ativo (Active)
+            </summary>
+            <param name="id">Identificador do médico</param>
+            <returns>View Dto do médico</returns>
+            <response code="200">Sucesso</response>
+            <response code="400">Falha na requisição</response>
+            <response code="401">Não Autorizado</response>
+        </member>
+        <member name="M:HealthWebApi.Controllers.DoctorController.InactiveDoctor(System.Int32)">
+            <summary>
+            Alterar o Status do médico para Inativo (Inactive)
+            </summary>
+            <param name="id">Identificador do médico</param>
+            <returns>View Dto do médico</returns>
+            <response code="200">Sucesso</response>
+            <response code="400">Falha na requisição</response>
+            <response code="401">Não Autorizado</response>
+        </member>
+        <member name="M:HealthWebApi.Controllers.DoctorController.GetAvailabeDoctor(Entities.Dtos.DoctorDto.MedicalAvailabilityQueryBySpecialty)">
+            <summary>
+            Buscar médicos por especialidade disponíveis em um horário específico
+            </summary>
+            <param name="id">Identificador do médico</param>
+            <returns>View Dto do médico</returns>
+            <response code="200">Sucesso</response>
+            <response code="400">Falha na requisição</response>
+            <response code="401">Não Autorizado</response>
+        </member>
+        <member name="M:HealthWebApi.Controllers.PatientController.GetAll">
+            <summary>
+            Obter todas as views Dto de pacientes da base de dados
+            </summary>
+            <returns>Lista de views Dto de pacientes</returns>
+            <response code="200">Sucesso</response>
+            <response code="401">Não Autorizado</response>
+        </member>
+        <member name="M:HealthWebApi.Controllers.PatientController.GetViewById(System.Int32)">
+            <summary>
+            Obter a view Dto de um paciente específico da base de dados
+            </summary>
+            <param name="id">Identificador do paciente</param>
+            <returns>View Dto do paciente</returns>
+            <response code="200">Sucesso</response>
+            <response code="400">Paciente não encontrado</response>
+            <response code="401">Não Autorizado</response>
+        </member>
+        <member name="M:HealthWebApi.Controllers.PatientController.CreatePatient(Entities.Dtos.PatientDto.CreatePatient)">
+            <summary>
+            Criar um novo registro na tabela de pacientes
+            </summary>
+            <returns>View Dto do paciente</returns>
+            <response code="201">Sucesso</response>
+            <response code="400">Falha na requisição</response>
+            <response code="401">Não Autorizado</response>
+        </member>
+        <member name="M:HealthWebApi.Controllers.PatientController.UpdatePatient(System.Int32,Entities.Dtos.PatientDto.UpdatePatient)">
+            <summary>
+            Alterar um registro na tabela de pacientes
+            </summary>
+            <param name="id">Identificador do paciente</param>
+            <returns>View Dto do paciente</returns>
+            <response code="201">Sucesso</response>
+            <response code="400">Falha na requisição</response>
+            <response code="401">Não Autorizado</response>
+        </member>
+        <member name="M:HealthWebApi.Controllers.PatientController.DeletePatient(System.Int32)">
+            <summary>
+            Excluir um registro na tabela de pacientes
+            </summary>
+            <param name="id">Identificador do paciente</param>
+            <returns>True para sucesso na exclusão, False para falha na exclusão</returns>
+            <response code="200">Sucesso</response>
+            <response code="400">Falha na requisição</response>
+            <response code="401">Não Autorizado</response>
+        </member>
+        <member name="M:HealthWebApi.Controllers.PatientController.ActivePatient(System.Int32)">
+            <summary>
+            Alterar o Status do paciente para Ativo (Active)
+            </summary>
+            <param name="id">Identificador do paciente</param>
+            <returns>View Dto do paciente</returns>
+            <response code="200">Sucesso</response>
+            <response code="400">Falha na requisição</response>
+            <response code="401">Não Autorizado</response>
+        </member>
+        <member name="M:HealthWebApi.Controllers.PatientController.InactivePatient(System.Int32)">
+            <summary>
+            Alterar o Status do paciente para Inativo (Inactive)
+            </summary>
+            <param name="id">Identificador do paciente</param>
+            <returns>View Dto do paciente</returns>
+            <response code="200">Sucesso</response>
+            <response code="400">Falha na requisição</response>
+            <response code="401">Não Autorizado</response>
+        </member>
+        <member name="M:HealthWebApi.Controllers.UserController.Login(Entities.Dtos.UserDto.LoginRequest)">
+            <summary>
+            Realizar login
+            </summary>
+            <returns>Token de autenticação e View do Usuário</returns>
+            <response code="200">Sucesso</response>
+            <response code="400">Falha na requisição</response>
+        </member>
+        <member name="M:HealthWebApi.Controllers.UserController.CreateUser(Entities.Dtos.UserDot.CreateUser)">
+            <summary>
+            Criar um novo registro na tabela de usuários
+            </summary>
+            <returns>Resultado da operação (True ou False)</returns>
+            <response code="200">Sucesso</response>
+            <response code="400">Falha na requisição</response>
+        </member>
+    </members>
+</doc>
