@@ -5,6 +5,7 @@ using HealthWebApi.Interfaces;
 using HealthWebApi.Services;
 using Infrastructure.Configuration;
 using Infrastructure.Data;
+using Infrastructure.DataSeeding;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,7 @@ builder.Services.AddCors();
 builder.Services.AddControllers();
 
 var connectionString = builder.Configuration.GetConnectionString("HealthApi");
+
 
 builder.Services.AddDbContext<HealthApiContext>(opts => opts.UseLazyLoadingProxies().UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 builder.Services.AddDbContext<UserContext>(opts => opts.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
@@ -74,7 +76,7 @@ builder.Services.AddSwaggerGen( c =>
         Type = SecuritySchemeType.ApiKey,
         BearerFormat = "JWT",
         In = ParameterLocation.Header,
-        Description = "Enter your Bearer Token in the format Bearer <token>",
+        Description = "Enter your Bearer Token in the format (Bearer 'your_token')",
     });
 
     c.AddSecurityRequirement(new OpenApiSecurityRequirement()
@@ -99,6 +101,29 @@ builder.Services.AddSwaggerGen( c =>
 });
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<HealthApiContext>();
+    var userManager = services.GetRequiredService<UserManager<User>>();
+
+    // Se o usuário padrão não existir, crie-o
+    if (!userManager.Users.Any())
+    {
+       await UserDataSeeder.SeedUser(userManager);
+    }
+
+    if (!context.Patients.Any())
+    {
+       await UserDataSeeder.SeedPatient(context);
+    }
+
+    if (!context.Doctors.Any())
+    {
+       await UserDataSeeder.SeedDoctor(context);
+    }
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

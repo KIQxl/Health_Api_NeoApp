@@ -22,6 +22,8 @@ namespace HealthWebApi.Services
             this._tokenServices = tokenServices;
         }
 
+
+        // Função para retornar um usuário da base de dados através do seu username retornando sua respectiva View Dto
         public async Task<UserView> GetUserViewByUserName(LoginRequest request)
         {
             User user = await _signInManager.UserManager.Users.FirstOrDefaultAsync(u => u.NormalizedUserName.Equals(request.UserName.ToUpper()));
@@ -31,6 +33,8 @@ namespace HealthWebApi.Services
             return userView;
         }
 
+
+        // Função para retornar um usuário da base de dados através do seu username
         public async Task<User> GetUserByUserName(LoginRequest request)
         {
             User user = await _signInManager.UserManager.Users.FirstOrDefaultAsync(u => u.NormalizedUserName.Equals(request.UserName.ToUpper()));
@@ -38,6 +42,8 @@ namespace HealthWebApi.Services
             return user;
         }
 
+
+        // Função para criar/adicionar um usuário na base de dados retornando sua respectiva View Dto
         public async Task<IdentityResult> CreateUser(CreateUser request)
         {
             User user = _mapper.Map<User>(request);
@@ -47,6 +53,8 @@ namespace HealthWebApi.Services
             return result;
         }
 
+
+        // Função para realizar login de um usuário cadastrado na base de dados retornando sua View Dto e um Token de autenticação
         public async Task<string> Login(LoginRequest request)
         {
            try

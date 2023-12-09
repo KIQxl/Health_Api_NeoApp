@@ -9,6 +9,8 @@ namespace HealthWebApi.Services
 {
     public class TokenService : ITokenServices
     {
+
+        // Função para gerar o token a partir dos dados de um usuário da base de dados
         public string GenerateToken(User user)
         {
             Claim[] claims = new Claim[]
@@ -31,8 +33,5 @@ namespace HealthWebApi.Services
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
-       
-
-
     }
 }

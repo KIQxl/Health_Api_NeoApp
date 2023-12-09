@@ -18,6 +18,8 @@ namespace Domain.Services
             this._mapper = mapper;
         }
 
+
+        // Função para consultar um paciente atráves do seu Id
         public async Task<Patient> GetPatientById(int id)
         {
             Patient patient = await _context.Patients.FirstOrDefaultAsync(p => p.Id == id);
@@ -25,6 +27,8 @@ namespace Domain.Services
             return patient;
         }
 
+
+        // Função para consultar um paciente atráves do seu Id na base de dados retornando sua respectiva View Dto
         public async Task<PatientView> GetPatientViewById(int id)
         {
             Patient patient = await GetPatientById(id);
@@ -32,6 +36,8 @@ namespace Domain.Services
             return _mapper.Map<PatientView>(patient);
         }
 
+
+        // Função para consultar todos os pacientes na base de dados retornando suas respectivas Views Dto
         public async Task<List<PatientView>> GetAllPatientsView()
         {
             List<Patient> patients = await _context.Patients.ToListAsync();
@@ -39,6 +45,8 @@ namespace Domain.Services
             return _mapper.Map<List<PatientView>>(patients);
         }
 
+
+        // Função para inserir um paciente na base de dados retornando sua respectiva View Dto
         public async Task<PatientView> CreatePatient(CreatePatient request)
         {
             Patient patient = _mapper.Map<Patient>(request);
@@ -50,6 +58,8 @@ namespace Domain.Services
             return _mapper.Map<PatientView>(patient);
         }
 
+
+        // Função para Alterar ou Atualizar um paciente na base de dados retornando sua respectiva View Dto
         public async Task<PatientView> UpdatePatient(int id, UpdatePatient request)
         {
             Patient patient = await GetPatientById(id);
@@ -71,6 +81,8 @@ namespace Domain.Services
             throw new Exception("Paciente não encontrado");
         }
 
+
+        // Função para Deletar um paciente na base de dados retornando um boolean
         public async Task<bool> DeletePatient(int id)
         {
             Patient patient = await GetPatientById(id);
@@ -85,6 +97,8 @@ namespace Domain.Services
             return false;
         }
 
+
+        // Função para Alterar o status de um paciente para inativo retornando sua View Dto
         public async Task<PatientView> InactivePatient(int id)
         {
             Patient patient = await GetPatientById(id);
@@ -96,6 +110,7 @@ namespace Domain.Services
         }
 
 
+        // Função para Alterar o status de um paciente para ativo retornando sua View Dto
         public async Task<PatientView> ActivePatient(int id)
         {
             Patient patient = await GetPatientById(id);

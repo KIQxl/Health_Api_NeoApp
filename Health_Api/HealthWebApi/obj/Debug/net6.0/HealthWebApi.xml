@@ -27,7 +27,6 @@
             <summary>
             Criar um novo registro na tabela de consultas médicas
             </summary>
-            <remarks>Objeto JSON</remarks>
             <returns>View Dto da consulta médica</returns>
             <response code="201">Sucesso</response>
             <response code="400">Falha na requisição</response>

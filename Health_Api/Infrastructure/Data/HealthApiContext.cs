@@ -17,6 +17,8 @@ namespace Infrastructure.Configuration
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            // Aplicando configuração dos campos das entidades na database
             modelBuilder.ApplyConfiguration(new PatientConfiguration());
             modelBuilder.ApplyConfiguration(new DoctorConfiguration());
             modelBuilder.ApplyConfiguration(new AppointmentConfiguration());

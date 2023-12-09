@@ -21,6 +21,8 @@ namespace Domain.Services
             this._mapper = mapper;
         }
 
+
+        // Função utilizando Dapper onde é consultado se um médico de determinada especialidade está disponível para atendimento em determinado horário
         public async Task<IEnumerable<DoctorViewByDapper>> GetAvailabeDoctor(MedicalAvailabilityQueryBySpecialty request)
         {
 
@@ -41,17 +43,21 @@ namespace Domain.Services
 
                 var parameters = new { formattedDate, request.MedicalSpecialty };
 
-                IEnumerable<DoctorViewByDapper> doctor = await con.QueryAsync<DoctorViewByDapper>(sql: sql, param: parameters);
+                IEnumerable<DoctorViewByDapper> doctors = await con.QueryAsync<DoctorViewByDapper>(sql: sql, param: parameters);
 
-                return doctor;
+                return doctors;
             }
         }
 
+
+        // Função para consultar um médico atráves do seu Id
         public async Task<Doctor> GetDoctorById(int id)
         {
             return await _context.Doctors.FirstOrDefaultAsync(d => d.Id.Equals(id));
         }
 
+
+        // Função para consultar um médico atráves do seu Id na base de dados retornando sua respectiva View Dto
         public async Task<DoctorView> GetDoctorViewById(int id)
         {
             Doctor doctor = await GetDoctorById(id);
@@ -59,6 +65,8 @@ namespace Domain.Services
             return _mapper.Map<DoctorView>(doctor);
         }
 
+
+        // Função para consultar todos os médicos na base de dados retornando suas respectivas Views Dto
         public async Task<List<DoctorView>> GetAllDoctorsView()
         {
             List<Doctor> doctors = await _context.Doctors.ToListAsync();
@@ -66,6 +74,8 @@ namespace Domain.Services
             return _mapper.Map<List<DoctorView>>(doctors);
         }
 
+
+        // Função para inserir um médico na base de dados retornando sua respectiva View Dto
         public async Task<DoctorView> CreateDoctor(CreateDoctor request)
         {
             Doctor doctor = _mapper.Map<Doctor>(request);
@@ -77,6 +87,8 @@ namespace Domain.Services
             return _mapper.Map<DoctorView>(doctor);
         }
 
+
+        // Função para Alterar ou Atualizar um médico na base de dados retornando sua respectiva View Dto
         public async Task<DoctorView> UpdateDoctor(int id, UpdateDoctor request)
         {
             Doctor doctor = await GetDoctorById(id);
@@ -100,6 +112,8 @@ namespace Domain.Services
             throw new Exception("Doutor não encontrado");
         }
 
+
+        // Função para Deletar um médico na base de dados retornando um boolean
         public async Task<bool> DeleteDoctor(int id)
         {
             Doctor doctor = await GetDoctorById(id);
@@ -110,6 +124,8 @@ namespace Domain.Services
             return true;
         }
 
+
+        // Função para Alterar o status de um médico para inativo retornando sua View Dto
         public async Task<DoctorView> InactiveDoctor(int id)
         {
             Doctor doctor = await GetDoctorById(id);
@@ -120,6 +136,8 @@ namespace Domain.Services
             return _mapper.Map<DoctorView>(doctor);
         }
 
+
+        // Função para Alterar o status de um médico para ativo retornando sua View Dto
         public async Task<DoctorView> ActiveDoctor(int id)
         {
             Doctor doctor = await GetDoctorById(id);
