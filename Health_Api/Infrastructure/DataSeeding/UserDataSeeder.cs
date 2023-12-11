@@ -55,7 +55,7 @@ namespace Infrastructure.DataSeeding
                 Phone = "xxxxxxxxxxx",
                 Address = "xxx xxxxxxxx xxxxx",
                 CRM = "xxxxxxxxxxxx",
-                MedicalSpecialty = "Default Specialty",
+                MedicalSpecialty = "Ortopedista",
                 DoctorStatus = PersonStatus.Active
             };
 

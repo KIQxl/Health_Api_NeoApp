@@ -11,6 +11,7 @@ namespace Tests
     {
         public static string Token { get; set; }
 
+        // orientaçao para todos os testes, todos os testes necessitam de um token de autenticação para acesso as rotas, o token é gerado automaticamente com as credenciais do usuário padrão (Login: DefaultUser, Password: Default@123), caso esse usuário seja deletado da base de dados, é necessário alterar as credenciais na função GetToken
 
         // teste de retorno de todos os pacientes da base de dados
         [Fact]
@@ -33,8 +34,8 @@ namespace Tests
         {
             //Arrange
             string url = "https://localhost:7018/Health/v1/Appointments/CreateAppointment";
-            int doctorId = 9;
-            int patientId = 6;
+            int doctorId = 1;
+            int patientId = 1;
             var appointmentrequest = new
             {
                 DoctorId = doctorId,
@@ -43,7 +44,7 @@ namespace Tests
             };
 
             //Act
-            AppointmentView result = await Post(url, appointmentrequest);
+            AppointmentView result = await CreateNewAppointment(url, appointmentrequest);
 
             //Assert
             Assert.True(result.Status.Equals(AppointmentStatus.Scheduled));
@@ -56,8 +57,8 @@ namespace Tests
         {
             //Arrange
             string url = "https://localhost:7018/Health/v1/Appointments/CreateAppointment";
-            int doctorId = 4;
-            int patientId = 3;
+            int doctorId = 1;
+            int patientId = 1;
             var appointmentrequest = new
             {
                 DoctorId = doctorId,
@@ -66,7 +67,7 @@ namespace Tests
             };
 
             //Act
-            var exception = await Assert.ThrowsAsync<Exception>(() => Post(url, appointmentrequest));
+            var exception = await Assert.ThrowsAsync<Exception>(() => CreateNewAppointment(url, appointmentrequest));
 
 
         }
@@ -79,8 +80,8 @@ namespace Tests
 
             using (var client = new HttpClient())
             {
-                string login = "kiqxl";
-                string password = "Kaique1998@";
+                string login = "DefaultUser";
+                string password = "Default@123";
 
                 var loginRequest = new
                 {
@@ -108,29 +109,36 @@ namespace Tests
         // Função para consultar todos os pacientes da base de dados
         public async Task<List<PatientView>> Get(string url)
         {
-            GetToken();
-            if (!string.IsNullOrWhiteSpace(Token))
+            try
             {
-                using (var client = new HttpClient())
+                GetToken();
+                if (!string.IsNullOrWhiteSpace(Token))
                 {
-                    client.DefaultRequestHeaders.Clear();
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
+                    using (var client = new HttpClient())
+                    {
+                        client.DefaultRequestHeaders.Clear();
+                        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
 
-                    var res = await client.GetStringAsync(url);
+                        var res = await client.GetStringAsync(url);
 
-                    var patients = JsonConvert.DeserializeObject<List<PatientView>>(res).ToList();
+                        var patients = JsonConvert.DeserializeObject<List<PatientView>>(res).ToList();
 
-                    return patients;
+                        return patients;
+                    }
                 }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
 
-        return null;
-            
         }
 
 
         // Função para criar/adicionar uma consulta médica na base de dados
-        public async Task<AppointmentView> Post(string url, object createAppointmentRequest = null)
+        public async Task<AppointmentView> CreateNewAppointment(string url, object createAppointmentRequest = null)
         {
            try
             {
