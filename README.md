@@ -6,8 +6,8 @@ Uma API desenvolvida para uma aplicação dentro do contexto da área da saúde
 - <a href="#funcionalidades-do-projeto">Funcionalidades do projeto</a>
 - <a href="#processo-criativo">Processo criativo</a>
 - <a href="#tecnologias-utilizadas">Tecnologias utilizadas</a>
-- <a href="#instrucoes-para-uso-da-aplicação">Instruções para uso da aplicação</a>
-- <a href="#consideracoes-sobre-o-projeto">Considerações sobre o projeto</a>
+- <a href="#instruções-para-uso-da-aplicação">Instruções para uso da aplicação</a>
+- <a href="#considerações-sobre-o-projeto">Considerações sobre o projeto</a>
 - <a href="#onde-me-encontrar">Minhas redes "Onde me encontrar"</a>
 
 
