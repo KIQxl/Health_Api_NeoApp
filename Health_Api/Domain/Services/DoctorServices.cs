@@ -130,6 +130,11 @@ namespace Domain.Services
         {
             Doctor doctor = await GetDoctorById(id);
 
+            if (doctor == null)
+            {
+                throw new Exception("Médico não encontrado");
+            }
+
             doctor.DoctorStatus = PersonStatus.Inactive;
 
             await _context.SaveChangesAsync();
@@ -141,6 +146,11 @@ namespace Domain.Services
         public async Task<DoctorView> ActiveDoctor(int id)
         {
             Doctor doctor = await GetDoctorById(id);
+
+            if(doctor == null)
+            {
+                throw new Exception("Médico não encontrado");
+            }
 
             doctor.DoctorStatus = PersonStatus.Active;
 

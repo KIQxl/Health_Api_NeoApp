@@ -52,40 +52,51 @@ namespace Domain.Services
         // Função para inserir uma consulta médica na base de dados retornando sua respectiva View Dto
         public async Task<AppointmentView> CreateAppointment(CreateAppointment request)
         {
-            Doctor doctor = await _context.Doctors.FirstOrDefaultAsync(d => d.Id.Equals(request.DoctorId));
-            Patient patient = await _context.Patients.FirstOrDefaultAsync(d => d.Id.Equals(request.PatientId));
-
-            IEnumerable<DoctorView> doctorsAvailabe = await GetAvailabeDoctorValidation(new MedicalAvailabilityQueryBySpecialty()
+            try
             {
-                AppointmentDate = request.AppointmentDate,
-                MedicalSpecialty = doctor.MedicalSpecialty
-            });
+                Doctor doctor = await _context.Doctors.FirstOrDefaultAsync(d => d.Id.Equals(request.DoctorId));
+                Patient patient = await _context.Patients.FirstOrDefaultAsync(d => d.Id.Equals(request.PatientId));
 
-            bool validationDoctorAvailabe = doctorsAvailabe.Any(x => x.Name == doctor.Name);
-            bool validationDate = DateTime.Now < request.AppointmentDate;
-
-            if (!validationDate || !validationDoctorAvailabe)
-            {
-                throw new Exception("Horário inválido ou Médico indisponíveis");
-            }
-
-            if (patient != null && doctor != null)
-            {
-                Appointment appointment = new Appointment()
+                if (patient == null || doctor == null)
                 {
-                    DoctorId = doctor.Id,
-                    PatientId = patient.Id,
+                    throw new Exception("Médico e/ou paciente não encontrados");
+                }
+
+                IEnumerable<DoctorView> doctorsAvailabe = await GetAvailabeDoctorValidation(new MedicalAvailabilityQueryBySpecialty()
+                {
                     AppointmentDate = request.AppointmentDate,
-                    Status = AppointmentStatus.Scheduled
-                };
+                    MedicalSpecialty = doctor.MedicalSpecialty
+                });
 
-                await _context.AddAsync(appointment);
-                await _context.SaveChangesAsync();
+                bool validationDoctorAvailabe = doctorsAvailabe.Any(x => x.Name == doctor.Name);
+                bool validationDate = DateTime.Now < request.AppointmentDate;
 
-                return _mapper.Map<AppointmentView>(appointment);
+                if (!validationDate || !validationDoctorAvailabe)
+                {
+                    throw new Exception("Horário inválido ou Médico indisponíveis");
+                }
+
+                if (patient != null && doctor != null)
+                {
+                    Appointment appointment = new Appointment()
+                    {
+                        DoctorId = doctor.Id,
+                        PatientId = patient.Id,
+                        AppointmentDate = request.AppointmentDate,
+                        Status = AppointmentStatus.Scheduled
+                    };
+
+                    await _context.AddAsync(appointment);
+                    await _context.SaveChangesAsync();
+
+                    return _mapper.Map<AppointmentView>(appointment);
+                }
+
+                throw new Exception("Não foi possível confirmar a consulta, verifique se os dados informados estão corretos");
+            } catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
-
-            throw new Exception("Não foi possível confirmar a consulta, médico e/ou paciente não encontrados");
         }
 
 

@@ -5,6 +5,7 @@ using Entities.Dtos.PatientDto;
 using Entities.Models;
 using Infrastructure.Configuration;
 using Microsoft.EntityFrameworkCore;
+using System.Numerics;
 
 namespace Domain.Services
 {
@@ -103,6 +104,11 @@ namespace Domain.Services
         {
             Patient patient = await GetPatientById(id);
 
+            if (patient == null)
+            {
+                throw new Exception("Paciente não encontrado");
+            }
+
             patient.PatientStatus = PersonStatus.Inactive;
 
             await _context.SaveChangesAsync();
@@ -114,6 +120,11 @@ namespace Domain.Services
         public async Task<PatientView> ActivePatient(int id)
         {
             Patient patient = await GetPatientById(id);
+
+            if (patient == null)
+            {
+                throw new Exception("Paciente não encontrado");
+            }
 
             patient.PatientStatus = PersonStatus.Active;
 
