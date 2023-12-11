@@ -3,12 +3,12 @@
 Uma API desenvolvida para uma aplicação dentro do contexto da área da saúde
 
 ## Indíce
-- <a href="#funcionalidades">Funcionalidades do projeto</a>
+- <a href="#funcionalidades-do-projeto">Funcionalidades do projeto</a>
 - <a href="#processo-criativo">Processo criativo</a>
-- <a href="#tecnologias">Tecnologias utilizadas</a>
-- <a href="#instrucoes">Instruções para uso da aplicação</a>
-- <a href="#consideracoes">Considerações sobre o projeto</a>
-- <a href="#redes">Minhas redes "Onde me encontrar"</a>
+- <a href="#tecnologias-utilizadas">Tecnologias utilizadas</a>
+- <a href="#instrucoes-para-uso-da-aplicação">Instruções para uso da aplicação</a>
+- <a href="#consideracoes-sobre-o-projeto">Considerações sobre o projeto</a>
+- <a href="#onde-me-encontrar">Minhas redes "Onde me encontrar"</a>
 
 
 ## Funcionalidades do projeto
@@ -85,7 +85,7 @@ Admin, Patient, Doctor.
 Ao final do desenvolvimento desse código, posso afirmar que foi um processo muito divertido e de muito aprendizado, dizem que a prática leva a perfeição, e esse projeto com certeza contribuiu ainda mais para meu desenvolvimento. 
 Ficarei feliz em responder quaisquer dúvidas e conversar sobre o desenvolvimento e possíveis melhorias para essa aplicação.
 
-## Minhas redes "Onde me encontrar"
+## Onde me encontrar
 [Linkedin](https://www.linkedin.com/in/kaique-alves-38058a19b/)
 
 [Meu portfólio de pessoal](https://portfolio-kaiquedev.netlify.app)
