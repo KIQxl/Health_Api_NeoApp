@@ -1,6 +1,6 @@
 # Health API - Projeto NeoApp 
 
-Uma API desenvolvida para uma aplicação dentro do contexto da área da saúde
+Uma API com .NET6 desenvolvida para uma aplicação dentro do contexto da área da saúde
 
 ## Indíce
 - <a href="#funcionalidades-do-projeto">Funcionalidades do projeto</a>
@@ -42,6 +42,7 @@ Por se tratar de um projeto de teste, não foram usadas variáveis de ambiente, 
 ## Instruções para uso da aplicação
 
 ```
+Nota: o projeto foi desenvolvido com .NET6
 Clone o repositório em sua máquina
 - git clone https://github.com/KIQxl/Health_Api_NeoApp.git
 
