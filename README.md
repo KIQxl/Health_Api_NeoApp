@@ -29,6 +29,8 @@ O uso de structs nesses cenários otimizam e economizam a memória heap já que 
 
 Foi utilizado na aplicação o conceito de DDD, onde não se trata diretamente de uma arquitetura, porém todas as camadas são pensadas para ter uma única responsabilidade facilitando a manutenção do código se necessário e facilitando o compreensão e leitura do mesmo.
 
+Por se tratar de um projeto de teste, não foram usadas variáveis de ambiente, portanto algumas informações como ConnectionStrings e Chave de token se encontram diretamente dentro da aplicação. Estou ciente de que essa não é a maneira mais segura de se usar dados sensíveis, porém, para agilizar e facilitar o funcionamento da aplicação em outra máquina foi usada essa abordagem
+
 ## Tecnologias utilizadas
 1. [Entity Framework Core](https://learn.microsoft.com/pt-br/ef/core/)
 2. [Identity Framework](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-8.0&tabs=visual-studio)
@@ -80,6 +82,8 @@ Algumas rotas só podem ser acessadas por perfis específicos, porém todas pode
 
 As roles que podem ser utilizadas na aplicação são:
 Admin, Patient, Doctor.
+
+Para execução dos teste, o a obtenção do token é feita por meio de uma função GetToken, as credenciais para obter esse token também são referentes ao usuário padrão, caso seja excluído da base de dados, as credenciais devem ser alteradas
 ```
 ## Considerações sobre o projeto
 Ao final do desenvolvimento desse código, posso afirmar que foi um processo muito divertido e de muito aprendizado, dizem que a prática leva a perfeição, e esse projeto com certeza contribuiu ainda mais para meu desenvolvimento. 
